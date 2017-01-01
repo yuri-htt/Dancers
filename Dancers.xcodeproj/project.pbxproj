@@ -7,18 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CF34C7C20674721D07E3D5D /* Pods_Dancers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6547501EA546471C7C911F42 /* Pods_Dancers.framework */; };
+		DA29061C1E19356C007AFF65 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29061B1E19356C007AFF65 /* Constants.swift */; };
+		DA29061E1E193578007AFF65 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29061D1E193578007AFF65 /* APIConstants.swift */; };
 		DA44259B1E16C1F4005DA551 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA44259A1E16C1F4005DA551 /* AppDelegate.swift */; };
 		DA44259D1E16C1F4005DA551 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA44259C1E16C1F4005DA551 /* ViewController.swift */; };
 		DA4425A01E16C1F4005DA551 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA44259E1E16C1F4005DA551 /* Main.storyboard */; };
 		DA4425A21E16C1F4005DA551 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA4425A11E16C1F4005DA551 /* Assets.xcassets */; };
 		DA4425A51E16C1F4005DA551 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA4425A31E16C1F4005DA551 /* LaunchScreen.storyboard */; };
 		DADD7A701E17929A00C0D2A6 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A6F1E17929A00C0D2A6 /* Enums.swift */; };
-		DADD7A721E17AC8A00C0D2A6 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A711E17AC8A00C0D2A6 /* HomeTableViewController.swift */; };
 		DADD7A741E17AD7C00C0D2A6 /* SegmentedControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A731E17AD7C00C0D2A6 /* SegmentedControlCell.swift */; };
 		DADD7A761E17ADDF00C0D2A6 /* VideoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A751E17ADDF00C0D2A6 /* VideoListCell.swift */; };
+		DADD7A7D1E1926B700C0D2A6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A7C1E1926B700C0D2A6 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5AE2613E54BC00301842F2D3 /* Pods-Dancers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dancers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dancers/Pods-Dancers.debug.xcconfig"; sourceTree = "<group>"; };
+		6547501EA546471C7C911F42 /* Pods_Dancers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dancers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA29061B1E19356C007AFF65 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DA29061D1E193578007AFF65 /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		DA4425971E16C1F4005DA551 /* Dancers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dancers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA44259A1E16C1F4005DA551 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA44259C1E16C1F4005DA551 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -27,9 +34,10 @@
 		DA4425A41E16C1F4005DA551 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA4425A61E16C1F4005DA551 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DADD7A6F1E17929A00C0D2A6 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
-		DADD7A711E17AC8A00C0D2A6 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		DADD7A731E17AD7C00C0D2A6 /* SegmentedControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlCell.swift; sourceTree = "<group>"; };
 		DADD7A751E17ADDF00C0D2A6 /* VideoListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListCell.swift; sourceTree = "<group>"; };
+		DADD7A7C1E1926B700C0D2A6 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		E5F273F6070AB8D1F900B075 /* Pods-Dancers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dancers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dancers/Pods-Dancers.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +45,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF34C7C20674721D07E3D5D /* Pods_Dancers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		216559B5712EB0B85B701A92 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5AE2613E54BC00301842F2D3 /* Pods-Dancers.debug.xcconfig */,
+				E5F273F6070AB8D1F900B075 /* Pods-Dancers.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CE4CB867DF36EAA8CF6E6CE2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6547501EA546471C7C911F42 /* Pods_Dancers.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DA44258E1E16C1F4005DA551 = {
 			isa = PBXGroup;
 			children = (
 				DA4425991E16C1F4005DA551 /* Dancers */,
 				DA4425981E16C1F4005DA551 /* Products */,
+				216559B5712EB0B85B701A92 /* Pods */,
+				CE4CB867DF36EAA8CF6E6CE2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,18 +90,44 @@
 		DA4425991E16C1F4005DA551 /* Dancers */ = {
 			isa = PBXGroup;
 			children = (
-				DA44259A1E16C1F4005DA551 /* AppDelegate.swift */,
-				DA44259C1E16C1F4005DA551 /* ViewController.swift */,
-				DADD7A6F1E17929A00C0D2A6 /* Enums.swift */,
 				DA44259E1E16C1F4005DA551 /* Main.storyboard */,
+				DADD7A791E19264E00C0D2A6 /* Common */,
+				DA44259C1E16C1F4005DA551 /* ViewController.swift */,
+				DADD7A7A1E19266200C0D2A6 /* Cell */,
+				DADD7A7B1E19267300C0D2A6 /* Model */,
 				DA4425A11E16C1F4005DA551 /* Assets.xcassets */,
 				DA4425A31E16C1F4005DA551 /* LaunchScreen.storyboard */,
 				DA4425A61E16C1F4005DA551 /* Info.plist */,
-				DADD7A711E17AC8A00C0D2A6 /* HomeTableViewController.swift */,
+			);
+			path = Dancers;
+			sourceTree = "<group>";
+		};
+		DADD7A791E19264E00C0D2A6 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DA44259A1E16C1F4005DA551 /* AppDelegate.swift */,
+				DADD7A6F1E17929A00C0D2A6 /* Enums.swift */,
+				DA29061B1E19356C007AFF65 /* Constants.swift */,
+				DA29061D1E193578007AFF65 /* APIConstants.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		DADD7A7A1E19266200C0D2A6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
 				DADD7A731E17AD7C00C0D2A6 /* SegmentedControlCell.swift */,
 				DADD7A751E17ADDF00C0D2A6 /* VideoListCell.swift */,
 			);
-			path = Dancers;
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		DADD7A7B1E19267300C0D2A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DADD7A7C1E1926B700C0D2A6 /* Model.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,9 +137,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA4425A91E16C1F4005DA551 /* Build configuration list for PBXNativeTarget "Dancers" */;
 			buildPhases = (
+				1394007D6815B69DF3178C62 /* [CP] Check Pods Manifest.lock */,
 				DA4425931E16C1F4005DA551 /* Sources */,
 				DA4425941E16C1F4005DA551 /* Frameworks */,
 				DA4425951E16C1F4005DA551 /* Resources */,
+				3B94128454B46910F432D91B /* [CP] Embed Pods Frameworks */,
+				7472D5C2299EA97675F4A9F5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -144,15 +201,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1394007D6815B69DF3178C62 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3B94128454B46910F432D91B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dancers/Pods-Dancers-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7472D5C2299EA97675F4A9F5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dancers/Pods-Dancers-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DA4425931E16C1F4005DA551 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DADD7A721E17AC8A00C0D2A6 /* HomeTableViewController.swift in Sources */,
 				DA44259D1E16C1F4005DA551 /* ViewController.swift in Sources */,
 				DADD7A741E17AD7C00C0D2A6 /* SegmentedControlCell.swift in Sources */,
 				DADD7A701E17929A00C0D2A6 /* Enums.swift in Sources */,
+				DADD7A7D1E1926B700C0D2A6 /* Model.swift in Sources */,
+				DA29061E1E193578007AFF65 /* APIConstants.swift in Sources */,
+				DA29061C1E19356C007AFF65 /* Constants.swift in Sources */,
 				DA44259B1E16C1F4005DA551 /* AppDelegate.swift in Sources */,
 				DADD7A761E17ADDF00C0D2A6 /* VideoListCell.swift in Sources */,
 			);
@@ -273,6 +380,7 @@
 		};
 		DA4425AA1E16C1F4005DA551 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AE2613E54BC00301842F2D3 /* Pods-Dancers.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = E6657QAX73;
@@ -286,6 +394,7 @@
 		};
 		DA4425AB1E16C1F4005DA551 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5F273F6070AB8D1F900B075 /* Pods-Dancers.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = E6657QAX73;

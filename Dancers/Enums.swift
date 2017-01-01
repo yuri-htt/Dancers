@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-enum setColorPattern {
-    case Blue
-    case Orange
-    case Black
+enum setColorPattern:String {
+    case Blue   = "Blue"
+    case Orange = "Orange"
+    case Black  = "Black"
     
     func makeBaseColor() -> UIColor {
         

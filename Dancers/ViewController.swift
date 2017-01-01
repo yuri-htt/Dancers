@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -17,15 +18,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Color
-        self.videoListTableView.backgroundColor = setColorPattern.Blue.makeBaseColor()
-        
-        let layer = CAGradientLayer()
-        var gradiationColors:[Any] = []
-        gradiationColors = setColorPattern.Blue.makeGradation()
-        layer.colors = gradiationColors
-        layer.frame = CGRect(x: 0, y: 0 , width: self.view.frame.size.width, height: self.view.frame.size.height - 64 + headerView.frame.size.height)
-        videoListTableView.layer.addSublayer(layer)
+        checkUserInfo()
+        setColor()
         
         self.videoListTableView.estimatedRowHeight = 285
         self.videoListTableView.rowHeight = UITableViewAutomaticDimension
@@ -53,6 +47,37 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(table: UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath) {
+
+    }
+    
+    func checkUserInfo() {
+        
+        // Realmにユーザー情報が登録されているか(=既存ユーザー)確認
+        let realm = try! Realm()
+        let UserInfo = realm.objects(User).first
+        if UserInfo?.id == 0 {
+            registerUser()
+        }
+        
+    }
+    
+    func registerUser() {
+        
+        
+    }
+    
+    func setColor() {
+        
+        // base color
+        self.videoListTableView.backgroundColor = setColorPattern.Blue.makeBaseColor()
+        
+        // gradiation
+        let layer = CAGradientLayer()
+        var gradiationColors:[Any] = []
+        gradiationColors = setColorPattern.Blue.makeGradation()
+        layer.colors = gradiationColors
+        layer.frame = CGRect(x: 0, y: 0 , width: self.view.frame.size.width, height: self.view.frame.size.height - 64 + headerView.frame.size.height)
+        self.videoListTableView.layer.insertSublayer(layer, at: 0)
 
     }
 }
