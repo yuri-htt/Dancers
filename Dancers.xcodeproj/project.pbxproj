@@ -12,6 +12,11 @@
 		DA29061C1E19356C007AFF65 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29061B1E19356C007AFF65 /* Constants.swift */; };
 		DA29061E1E193578007AFF65 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29061D1E193578007AFF65 /* APIConstants.swift */; };
 		DA2906201E195257007AFF65 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29061F1E195257007AFF65 /* User.swift */; };
+		DA365CB61E1A1E6900321C12 /* LeftSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA365CB51E1A1E6900321C12 /* LeftSideMenuViewController.swift */; };
+		DA365CB81E1A1FDE00321C12 /* RightSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA365CB71E1A1FDE00321C12 /* RightSideMenuViewController.swift */; };
+		DA365CBA1E1A268100321C12 /* ExSideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA365CB91E1A268100321C12 /* ExSideMenuController.swift */; };
+		DA365CBC1E1A26D800321C12 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA365CBB1E1A26D800321C12 /* SideMenuController.swift */; };
+		DA365CBE1E1A286E00321C12 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA365CBD1E1A286E00321C12 /* UIApplication.swift */; };
 		DA44259B1E16C1F4005DA551 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA44259A1E16C1F4005DA551 /* AppDelegate.swift */; };
 		DA44259D1E16C1F4005DA551 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA44259C1E16C1F4005DA551 /* ViewController.swift */; };
 		DA4425A01E16C1F4005DA551 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA44259E1E16C1F4005DA551 /* Main.storyboard */; };
@@ -30,6 +35,11 @@
 		DA29061B1E19356C007AFF65 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DA29061D1E193578007AFF65 /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		DA29061F1E195257007AFF65 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DA365CB51E1A1E6900321C12 /* LeftSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideMenuViewController.swift; sourceTree = "<group>"; };
+		DA365CB71E1A1FDE00321C12 /* RightSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightSideMenuViewController.swift; sourceTree = "<group>"; };
+		DA365CB91E1A268100321C12 /* ExSideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExSideMenuController.swift; sourceTree = "<group>"; };
+		DA365CBB1E1A26D800321C12 /* SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
+		DA365CBD1E1A286E00321C12 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		DA4425971E16C1F4005DA551 /* Dancers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dancers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA44259A1E16C1F4005DA551 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA44259C1E16C1F4005DA551 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,11 +107,16 @@
 				DA44259E1E16C1F4005DA551 /* Main.storyboard */,
 				DADD7A791E19264E00C0D2A6 /* Common */,
 				DA44259C1E16C1F4005DA551 /* ViewController.swift */,
+				DA365CB51E1A1E6900321C12 /* LeftSideMenuViewController.swift */,
 				DADD7A7A1E19266200C0D2A6 /* Cell */,
 				DADD7A7B1E19267300C0D2A6 /* Model */,
 				DA4425A11E16C1F4005DA551 /* Assets.xcassets */,
 				DA4425A31E16C1F4005DA551 /* LaunchScreen.storyboard */,
 				DA4425A61E16C1F4005DA551 /* Info.plist */,
+				DA365CB71E1A1FDE00321C12 /* RightSideMenuViewController.swift */,
+				DA365CB91E1A268100321C12 /* ExSideMenuController.swift */,
+				DA365CBB1E1A26D800321C12 /* SideMenuController.swift */,
+				DA365CBD1E1A286E00321C12 /* UIApplication.swift */,
 			);
 			path = Dancers;
 			sourceTree = "<group>";
@@ -261,7 +276,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA2906201E195257007AFF65 /* User.swift in Sources */,
+				DA365CB81E1A1FDE00321C12 /* RightSideMenuViewController.swift in Sources */,
 				DA44259D1E16C1F4005DA551 /* ViewController.swift in Sources */,
+				DA365CBE1E1A286E00321C12 /* UIApplication.swift in Sources */,
 				DADD7A741E17AD7C00C0D2A6 /* SegmentedControlCell.swift in Sources */,
 				DADD7A701E17929A00C0D2A6 /* Enums.swift in Sources */,
 				DADD7A7D1E1926B700C0D2A6 /* RealmModel.swift in Sources */,
@@ -269,6 +286,9 @@
 				DA29061E1E193578007AFF65 /* APIConstants.swift in Sources */,
 				DA29061C1E19356C007AFF65 /* Constants.swift in Sources */,
 				DA44259B1E16C1F4005DA551 /* AppDelegate.swift in Sources */,
+				DA365CB61E1A1E6900321C12 /* LeftSideMenuViewController.swift in Sources */,
+				DA365CBC1E1A26D800321C12 /* SideMenuController.swift in Sources */,
+				DA365CBA1E1A268100321C12 /* ExSideMenuController.swift in Sources */,
 				DADD7A761E17ADDF00C0D2A6 /* VideoListCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

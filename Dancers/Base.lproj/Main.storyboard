@@ -32,7 +32,7 @@
         <!--View Controller-->
         <scene sceneID="VNs-Pr-hUa">
             <objects>
-                <viewController id="jEn-aQ-LOl" customClass="ViewController" customModule="Dancers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jEn-aQ-LOl" customClass="ViewController" customModule="Dancers" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XKk-kt-Kgl"/>
                         <viewControllerLayoutGuide type="bottom" id="Wmb-iq-87o"/>
@@ -69,7 +69,7 @@
                                 <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="videoListCell" rowHeight="300" id="IoV-uT-oaM" customClass="VideoListCell" customModule="Dancers" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="videoListCell" rowHeight="300" id="IoV-uT-oaM" customClass="VideoListCell" customModule="Dancers" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IoV-uT-oaM" id="Xfd-US-4YA">
@@ -227,6 +227,9 @@
                     <navigationItem key="navigationItem" id="J1W-tM-DAM">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="b8F-qU-wWA">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="didPressLeftMenuBtn:" destination="jEn-aQ-LOl" id="YSx-DJ-EFs"/>
+                            </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="playList" id="lif-Ov-EQU">
@@ -298,7 +301,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playBackTimeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="mnj-UG-ib7">
-                                                    <rect key="frame" x="15" y="89.5" width="20" height="20"/>
+                                                    <rect key="frame" x="15" y="90" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="cxX-Zo-HjM"/>
                                                         <constraint firstAttribute="width" constant="20" id="dRC-lL-kpm"/>
@@ -312,7 +315,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="videoCreaterIcon" translatesAutoresizingMaskIntoConstraints="NO" id="hyc-gl-j7C">
-                                                    <rect key="frame" x="130" y="89.5" width="20" height="20"/>
+                                                    <rect key="frame" x="130" y="90" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="ULv-6e-Ruf"/>
                                                         <constraint firstAttribute="height" constant="20" id="qoq-aD-Jk8"/>
@@ -327,7 +330,7 @@
                                                     <state key="normal" image="downLoadButton"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3X-Vz-N22">
-                                                    <rect key="frame" x="40" y="59.5" width="80" height="20"/>
+                                                    <rect key="frame" x="40" y="60" width="80" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="l2x-TT-TVS"/>
                                                     </constraints>
@@ -336,7 +339,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnS-FN-rxW">
-                                                    <rect key="frame" x="40" y="89" width="80" height="19.5"/>
+                                                    <rect key="frame" x="40" y="89" width="80" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="GK4-9g-vBi"/>
                                                     </constraints>
@@ -345,19 +348,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKd-xo-tdo">
-                                                    <rect key="frame" x="155" y="60" width="155" height="19.5"/>
+                                                    <rect key="frame" x="155" y="60" width="155" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuj-mN-iut">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuj-mN-iut">
                                                     <rect key="frame" x="155" y="89.5" width="155" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfP-2v-cVh">
-                                                    <rect key="frame" x="290" y="20.5" width="20" height="20"/>
+                                                    <rect key="frame" x="290" y="21" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="Wv1-6K-II3"/>
                                                         <constraint firstAttribute="height" constant="20" id="jPZ-Ux-Qqp"/>
@@ -365,14 +368,14 @@
                                                     <state key="normal" image="twitterIcon"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0F9-pv-Jkp">
-                                                    <rect key="frame" x="260" y="20.5" width="20" height="20"/>
+                                                    <rect key="frame" x="260" y="21" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="U6V-kO-ipa"/>
                                                         <constraint firstAttribute="width" constant="20" id="yH3-zl-7qZ"/>
                                                     </constraints>
                                                     <state key="normal" image="facebookIcon"/>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7aD-Xp-wRM">
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7aD-Xp-wRM">
                                                     <rect key="frame" x="320" y="69" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="DOA-0z-3iS"/>
@@ -380,7 +383,7 @@
                                                     </constraints>
                                                     <state key="normal" image="triangle"/>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxx xxxxxxxxxxxxx xx xxxxxx xxxxxxx xxxxxx" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coR-iu-cVc">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="xxx xxxxxxxxxxxxx xx xxxxxx xxxxxxx xxxxxx" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coR-iu-cVc">
                                                     <rect key="frame" x="15" y="129" width="345" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -551,6 +554,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AuR-Qs-yQj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1805.5999999999999" y="-553.67316341829087"/>
+        </scene>
+        <!--Left Side Menu View Controller-->
+        <scene sceneID="Xkf-x8-NL5">
+            <objects>
+                <viewController storyboardIdentifier="LeftSideMenuViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wlc-LQ-nii" customClass="LeftSideMenuViewController" customModule="Dancers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iAZ-U5-5AF"/>
+                        <viewControllerLayoutGuide type="bottom" id="SPl-Ce-EJE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="POl-aG-2nu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.46274509800000002" green="0.60392156860000001" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Erm-L0-IMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2528" y="-551"/>
+        </scene>
+        <!--Right Side Menu View Controller-->
+        <scene sceneID="3AE-O8-0a6">
+            <objects>
+                <viewController storyboardIdentifier="RightSideMenuViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pF1-g8-N6D" customClass="RightSideMenuViewController" customModule="Dancers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gse-2a-Mn9"/>
+                        <viewControllerLayoutGuide type="bottom" id="dTe-TU-CzE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GtW-dv-l0H">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.85590160709999996" green="0.96245109159999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KFA-nv-ANK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3299" y="-549"/>
         </scene>
     </scenes>
     <resources>

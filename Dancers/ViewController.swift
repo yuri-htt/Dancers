@@ -14,6 +14,7 @@ import AlamofireObjectMapper
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var sortTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var videoListTableView: UITableView!
@@ -61,10 +62,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let UserInfo = realm.objects(RUser).first
         if let userInfo = UserInfo {
             if userInfo.id != 0 {
-               registerUser()
+               //registerUser()
             }
         } else {
-            registerUser()
+            //registerUser()
         }
         
     }
@@ -127,5 +128,44 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.videoListTableView.layer.insertSublayer(layer, at: 0)
 
     }
+    
+    
+    @IBAction func didPressLeftMenuBtn(_ sender: Any) {
+        self.slideMenuController2()?.openLeft2()
+    }
 }
 
+extension ViewController : SlideMenuControllerDelegate {
+    
+    func leftWillOpen() {
+        print("SlideMenuControllerDelegate: leftWillOpen")
+    }
+    
+    func leftDidOpen() {
+        print("SlideMenuControllerDelegate: leftDidOpen")
+    }
+    
+    func leftWillClose() {
+        print("SlideMenuControllerDelegate: leftWillClose")
+    }
+    
+    func leftDidClose() {
+        print("SlideMenuControllerDelegate: leftDidClose")
+    }
+    
+    func rightWillOpen() {
+        print("SlideMenuControllerDelegate: rightWillOpen")
+    }
+    
+    func rightDidOpen() {
+        print("SlideMenuControllerDelegate: rightDidOpen")
+    }
+    
+    func rightWillClose() {
+        print("SlideMenuControllerDelegate: rightWillClose")
+    }
+    
+    func rightDidClose() {
+        print("SlideMenuControllerDelegate: rightDidClose")
+    }
+}
