@@ -11,8 +11,8 @@ import RealmSwift
 
 class RUser: Object {
 
-    dynamic var name = ""
-    dynamic var id = 0
-    dynamic var colorType = "Blue"
+    dynamic var name      :String = ""
+    dynamic var id        :Int = 0
+    dynamic var colorType :String = "Blue"
     
 }

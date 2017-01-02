@@ -12,11 +12,21 @@ import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
 
+enum SidebarStatus {
+    case opened
+    case closed
+}
+
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var sortTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var videoListTableView: UITableView!
+    @IBOutlet weak var sideMenuContainer: UIView!
+    @IBOutlet weak var handleSideButton: UIButton!
+    
+    fileprivate var sideState: SidebarStatus = .closed
+    //var addedLayer = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,15 +34,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         checkUserInfo()
         setColor()
         
-        
         self.videoListTableView.estimatedRowHeight = 285
         self.videoListTableView.rowHeight = UITableViewAutomaticDimension
 
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        //コンテナビューと半透明ボタンはAutoLayoutをかけないでコードで再配置する
+        handleSideButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        handleSideButton.isEnabled = false
+        handleSideButton.backgroundColor = UIColor.darkGray
+        handleSideButton.alpha = 0
+        sideMenuContainer.frame = CGRect(x: -300, y: 0, width: 300, height: self.view.frame.height)
+        sideMenuContainer.backgroundColor = sideMenuColor
+        
+        //ナビゲーションバーの上に配置するためにこの階層に対してaddSubViewを行う
+        navigationController?.view.addSubview(handleSideButton)
+        navigationController?.view.addSubview(sideMenuContainer)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
 
 
@@ -58,25 +83,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // Realmにユーザー情報が登録されているか(=既存ユーザー)確認
         let realm = try! Realm()
-        let UserInfo = realm.objects(RUser).first
-        if let userInfo = UserInfo {
-            if userInfo.id != 0 {
-               //registerUser()
-            }
-        } else {
-            //registerUser()
+        let user = realm.objects(RUser.self)
+        if user.count == 0 {
+            registerUser()
         }
         
     }
     
     func registerUser() {
         
-        //let url = "\(BaseAPI)\(SignUp)"
-        let url = "http://tk2-212-15657.vs.sakura.ne.jp:8000/api/users/"
-        var parameters:Parameters = Parameters()
-        
-        parameters["device_code"] = "1"
-        //var para:[String: String] = ["device_code":"1"]
+        let url = "\(BaseAPI)\(SignUp)"
+    
         let para: Parameters = [
             "device_code":"1"
         ]
@@ -92,7 +109,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         let realm = try! Realm()
                         var rUser = RUser()
                         try! realm.write {
-                            rUser.id = user.id!
+                            rUser.id = Int(user.id!)!
                             realm.add(rUser)
                         }
                     }
@@ -126,15 +143,74 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         layer.colors = gradiationColors
         layer.frame = CGRect(x: 0, y: 0 , width: self.view.frame.size.width, height: self.view.frame.size.height)
         self.view.layer.insertSublayer(layer, at: 0)
+        
 
+    }
+    
+    func setColor(colorType:String) {
+        
+        let layer = CAGradientLayer()
+        var gradiationColors:[Any] = []
+        if colorType == setColorPattern.Blue.rawValue {
+            self.view.backgroundColor = setColorPattern.Blue.makeBaseColor()
+            gradiationColors = setColorPattern.Blue.makeGradation()
+        } else if colorType == setColorPattern.Orange.rawValue {
+            self.view.backgroundColor = setColorPattern.Orange.makeBaseColor()
+            gradiationColors = setColorPattern.Orange.makeGradation()
+        } else if colorType == setColorPattern.Black.rawValue {
+            self.view.backgroundColor = setColorPattern.Black.makeBaseColor()
+            gradiationColors = setColorPattern.Black.makeGradation()
+        }
+        layer.colors = gradiationColors
+        layer.frame = CGRect(x: 0, y: 0 , width: self.view.frame.size.width, height: self.view.frame.size.height)
+        self.view.layer.filters?.remove(at: 0)
+        self.view.layer.insertSublayer(layer, at: 0)
     }
     
     @IBAction func didPressNavBtn(_ sender: Any) {
         
-        let settingsLaucher = SettingsLauncher()
-        settingsLaucher.showSettings()
+        sideState = SidebarStatus.opened
+        changeSideMenuStatus(sideState)
         
     }
+    
+    @IBAction func closeSideMenuAciton(_ sender: Any) {
+        sideState = SidebarStatus.closed
+        changeSideMenuStatus(sideState)
+    }
 
+    fileprivate func changeSideMenuStatus(_ targetStatus: SidebarStatus) {
+        
+        if targetStatus == SidebarStatus.opened {
+            
+            //サイドメニューを表示状態にする
+            UIView.animate(withDuration: 0.24, delay: 0, options: .curveEaseOut, animations: {
+                
+                self.handleSideButton.isEnabled = true
+                self.handleSideButton.alpha = 0.6
+                self.sideMenuContainer.frame = CGRect(x: 0, y: 0, width: 300, height: self.view.frame.height)
+                
+            }, completion: nil)
+            
+        } else {
+            
+            //サイドメニューを非表示状態にする
+            UIView.animate(withDuration: 0.24, delay: 0, options: .curveEaseOut, animations: {
+                
+                self.handleSideButton.isEnabled = false
+                self.handleSideButton.alpha = 0
+                self.sideMenuContainer.frame = CGRect(x: -300, y: 0, width: 300, height: self.view.frame.height)
+                
+            }, completion: nil)
+        }
+        
+    }
 }
 
+extension ViewController: SettingsTableViewControllerDelegate {
+    func settingsTableViewController(colortType:String) {
+        sideState = SidebarStatus.closed
+        changeSideMenuStatus(sideState)
+        setColor(colorType: colortType)
+    }
+}
