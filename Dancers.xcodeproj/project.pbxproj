@@ -12,6 +12,7 @@
 		DA29061C1E19356C007AFF65 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29061B1E19356C007AFF65 /* Constants.swift */; };
 		DA29061E1E193578007AFF65 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29061D1E193578007AFF65 /* APIConstants.swift */; };
 		DA2906201E195257007AFF65 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29061F1E195257007AFF65 /* User.swift */; };
+		DA365CC01E1A3FA200321C12 /* SettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA365CBF1E1A3FA200321C12 /* SettingsLauncher.swift */; };
 		DA44259B1E16C1F4005DA551 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA44259A1E16C1F4005DA551 /* AppDelegate.swift */; };
 		DA44259D1E16C1F4005DA551 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA44259C1E16C1F4005DA551 /* ViewController.swift */; };
 		DA4425A01E16C1F4005DA551 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA44259E1E16C1F4005DA551 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		DA29061B1E19356C007AFF65 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DA29061D1E193578007AFF65 /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		DA29061F1E195257007AFF65 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DA365CBF1E1A3FA200321C12 /* SettingsLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLauncher.swift; sourceTree = "<group>"; };
 		DA4425971E16C1F4005DA551 /* Dancers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dancers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA44259A1E16C1F4005DA551 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA44259C1E16C1F4005DA551 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				DA29061B1E19356C007AFF65 /* Constants.swift */,
 				DA29061D1E193578007AFF65 /* APIConstants.swift */,
 				DA1E33851E195BF400BAD751 /* Utils.swift */,
+				DA365CBF1E1A3FA200321C12 /* SettingsLauncher.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			files = (
 				DA2906201E195257007AFF65 /* User.swift in Sources */,
 				DA44259D1E16C1F4005DA551 /* ViewController.swift in Sources */,
+				DA365CC01E1A3FA200321C12 /* SettingsLauncher.swift in Sources */,
 				DADD7A741E17AD7C00C0D2A6 /* SegmentedControlCell.swift in Sources */,
 				DADD7A701E17929A00C0D2A6 /* Enums.swift in Sources */,
 				DADD7A7D1E1926B700C0D2A6 /* RealmModel.swift in Sources */,

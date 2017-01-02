@@ -6,4 +6,8 @@
 //  Copyright © 2017年 Yuri Tayama. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+// Color
+let navigationColor:UIColor = UIColor(red: 38/255, green: 45/255, blue: 54/255, alpha: 1.0)
+let sideMenuColor  :UIColor = UIColor(red: 38/255, green: 45/255, blue: 54/255, alpha: 1.0)

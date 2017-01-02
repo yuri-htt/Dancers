@@ -61,10 +61,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let UserInfo = realm.objects(RUser).first
         if let userInfo = UserInfo {
             if userInfo.id != 0 {
-               registerUser()
+               //registerUser()
             }
         } else {
-            registerUser()
+            //registerUser()
         }
         
     }
@@ -116,16 +116,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func setColor() {
         
         // base color
-        self.videoListTableView.backgroundColor = setColorPattern.Blue.makeBaseColor()
+        self.view.backgroundColor = setColorPattern.Blue.makeBaseColor()
+        self.videoListTableView.backgroundColor = UIColor.clear
         
         // gradiation
         let layer = CAGradientLayer()
         var gradiationColors:[Any] = []
         gradiationColors = setColorPattern.Blue.makeGradation()
         layer.colors = gradiationColors
-        layer.frame = CGRect(x: 0, y: 0 , width: self.view.frame.size.width, height: self.view.frame.size.height - 64 + headerView.frame.size.height)
-        self.videoListTableView.layer.insertSublayer(layer, at: 0)
+        layer.frame = CGRect(x: 0, y: 0 , width: self.view.frame.size.width, height: self.view.frame.size.height)
+        self.view.layer.insertSublayer(layer, at: 0)
 
     }
+    
+    @IBAction func didPressNavBtn(_ sender: Any) {
+        
+        let settingsLaucher = SettingsLauncher()
+        settingsLaucher.showSettings()
+        
+    }
+
 }
 
