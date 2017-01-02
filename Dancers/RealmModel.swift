@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class User: Object {
+class RUser: Object {
 
     dynamic var name = ""
     dynamic var id = 0

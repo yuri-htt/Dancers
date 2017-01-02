@@ -8,6 +8,9 @@
 
 import UIKit
 import RealmSwift
+import Alamofire
+import ObjectMapper
+import AlamofireObjectMapper
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -20,6 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         checkUserInfo()
         setColor()
+        
         
         self.videoListTableView.estimatedRowHeight = 285
         self.videoListTableView.rowHeight = UITableViewAutomaticDimension
@@ -54,8 +58,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // Realmにユーザー情報が登録されているか(=既存ユーザー)確認
         let realm = try! Realm()
-        let UserInfo = realm.objects(User).first
-        if UserInfo?.id == 0 {
+        let UserInfo = realm.objects(RUser).first
+        if let userInfo = UserInfo {
+            if userInfo.id != 0 {
+               registerUser()
+            }
+        } else {
             registerUser()
         }
         
@@ -63,7 +71,46 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func registerUser() {
         
+        //let url = "\(BaseAPI)\(SignUp)"
+        let url = "http://tk2-212-15657.vs.sakura.ne.jp:8000/api/users/"
+        var parameters:Parameters = Parameters()
         
+        parameters["device_code"] = "1"
+        //var para:[String: String] = ["device_code":"1"]
+        let para: Parameters = [
+            "device_code":"1"
+        ]
+
+        Alamofire.request(url, method: .post, parameters: para, encoding: JSONEncoding.default)
+            .validate()
+            .responseData { response in Utils.checkResponse(response) }
+            .responseObject { (response: DataResponse<User>) in
+                switch response.result {
+                case .success:
+                    //  save to Realm
+                    if let user = response.result.value {
+                        let realm = try! Realm()
+                        var rUser = RUser()
+                        try! realm.write {
+                            rUser.id = user.id!
+                            realm.add(rUser)
+                        }
+                    }
+
+                case .failure(let _):
+                    // alert
+                    let alertController = UIAlertController(title: "Communication error", message: "Please try again in a good place of radio.", preferredStyle: .alert)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                    }
+                    alertController.addAction(okAction)
+                    
+                    DispatchQueue.main.async(execute: {
+                        self.present(alertController, animated: true, completion: nil)
+                    })
+                }
+
+        }
     }
     
     func setColor() {

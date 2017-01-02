@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2CF34C7C20674721D07E3D5D /* Pods_Dancers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6547501EA546471C7C911F42 /* Pods_Dancers.framework */; };
+		DA1E33861E195BF400BAD751 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1E33851E195BF400BAD751 /* Utils.swift */; };
 		DA29061C1E19356C007AFF65 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29061B1E19356C007AFF65 /* Constants.swift */; };
 		DA29061E1E193578007AFF65 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29061D1E193578007AFF65 /* APIConstants.swift */; };
+		DA2906201E195257007AFF65 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29061F1E195257007AFF65 /* User.swift */; };
 		DA44259B1E16C1F4005DA551 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA44259A1E16C1F4005DA551 /* AppDelegate.swift */; };
 		DA44259D1E16C1F4005DA551 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA44259C1E16C1F4005DA551 /* ViewController.swift */; };
 		DA4425A01E16C1F4005DA551 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA44259E1E16C1F4005DA551 /* Main.storyboard */; };
@@ -18,14 +20,16 @@
 		DADD7A701E17929A00C0D2A6 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A6F1E17929A00C0D2A6 /* Enums.swift */; };
 		DADD7A741E17AD7C00C0D2A6 /* SegmentedControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A731E17AD7C00C0D2A6 /* SegmentedControlCell.swift */; };
 		DADD7A761E17ADDF00C0D2A6 /* VideoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A751E17ADDF00C0D2A6 /* VideoListCell.swift */; };
-		DADD7A7D1E1926B700C0D2A6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A7C1E1926B700C0D2A6 /* Model.swift */; };
+		DADD7A7D1E1926B700C0D2A6 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A7C1E1926B700C0D2A6 /* RealmModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5AE2613E54BC00301842F2D3 /* Pods-Dancers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dancers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dancers/Pods-Dancers.debug.xcconfig"; sourceTree = "<group>"; };
 		6547501EA546471C7C911F42 /* Pods_Dancers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dancers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA1E33851E195BF400BAD751 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		DA29061B1E19356C007AFF65 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DA29061D1E193578007AFF65 /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		DA29061F1E195257007AFF65 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DA4425971E16C1F4005DA551 /* Dancers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dancers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA44259A1E16C1F4005DA551 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA44259C1E16C1F4005DA551 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,7 +40,7 @@
 		DADD7A6F1E17929A00C0D2A6 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		DADD7A731E17AD7C00C0D2A6 /* SegmentedControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlCell.swift; sourceTree = "<group>"; };
 		DADD7A751E17ADDF00C0D2A6 /* VideoListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListCell.swift; sourceTree = "<group>"; };
-		DADD7A7C1E1926B700C0D2A6 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		DADD7A7C1E1926B700C0D2A6 /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		E5F273F6070AB8D1F900B075 /* Pods-Dancers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dancers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dancers/Pods-Dancers.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +113,7 @@
 				DADD7A6F1E17929A00C0D2A6 /* Enums.swift */,
 				DA29061B1E19356C007AFF65 /* Constants.swift */,
 				DA29061D1E193578007AFF65 /* APIConstants.swift */,
+				DA1E33851E195BF400BAD751 /* Utils.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -125,7 +130,8 @@
 		DADD7A7B1E19267300C0D2A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DADD7A7C1E1926B700C0D2A6 /* Model.swift */,
+				DADD7A7C1E1926B700C0D2A6 /* RealmModel.swift */,
+				DA29061F1E195257007AFF65 /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -254,10 +260,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA2906201E195257007AFF65 /* User.swift in Sources */,
 				DA44259D1E16C1F4005DA551 /* ViewController.swift in Sources */,
 				DADD7A741E17AD7C00C0D2A6 /* SegmentedControlCell.swift in Sources */,
 				DADD7A701E17929A00C0D2A6 /* Enums.swift in Sources */,
-				DADD7A7D1E1926B700C0D2A6 /* Model.swift in Sources */,
+				DADD7A7D1E1926B700C0D2A6 /* RealmModel.swift in Sources */,
+				DA1E33861E195BF400BAD751 /* Utils.swift in Sources */,
 				DA29061E1E193578007AFF65 /* APIConstants.swift in Sources */,
 				DA29061C1E19356C007AFF65 /* Constants.swift in Sources */,
 				DA44259B1E16C1F4005DA551 /* AppDelegate.swift in Sources */,
