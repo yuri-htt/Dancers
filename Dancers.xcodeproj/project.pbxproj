@@ -19,6 +19,7 @@
 		DA9061F11E1AB0580058B55D /* LeftSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9061F01E1AB0570058B55D /* LeftSideMenuViewController.swift */; };
 		DA9061F31E1AB1550058B55D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9061F21E1AB1550058B55D /* User.swift */; };
 		DA9061F51E1ABA080058B55D /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9061F41E1ABA080058B55D /* SettingsTableViewController.swift */; };
+		DA9737841E1BE995003D84BA /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9737831E1BE995003D84BA /* Video.swift */; };
 		DADD7A701E17929A00C0D2A6 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A6F1E17929A00C0D2A6 /* Enums.swift */; };
 		DADD7A741E17AD7C00C0D2A6 /* SegmentedControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A731E17AD7C00C0D2A6 /* SegmentedControlCell.swift */; };
 		DADD7A761E17ADDF00C0D2A6 /* VideoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A751E17ADDF00C0D2A6 /* VideoListCell.swift */; };
@@ -41,6 +42,7 @@
 		DA9061F01E1AB0570058B55D /* LeftSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideMenuViewController.swift; sourceTree = "<group>"; };
 		DA9061F21E1AB1550058B55D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DA9061F41E1ABA080058B55D /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		DA9737831E1BE995003D84BA /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		DADD7A6F1E17929A00C0D2A6 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		DADD7A731E17AD7C00C0D2A6 /* SegmentedControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlCell.swift; sourceTree = "<group>"; };
 		DADD7A751E17ADDF00C0D2A6 /* VideoListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListCell.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				DADD7A7C1E1926B700C0D2A6 /* RealmModel.swift */,
 				DA9061F21E1AB1550058B55D /* User.swift */,
+				DA9737831E1BE995003D84BA /* Video.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				DA29061E1E193578007AFF65 /* APIConstants.swift in Sources */,
 				DA29061C1E19356C007AFF65 /* Constants.swift in Sources */,
 				DA9061F51E1ABA080058B55D /* SettingsTableViewController.swift in Sources */,
+				DA9737841E1BE995003D84BA /* Video.swift in Sources */,
 				DA44259B1E16C1F4005DA551 /* AppDelegate.swift in Sources */,
 				DADD7A761E17ADDF00C0D2A6 /* VideoListCell.swift in Sources */,
 				DA9061F31E1AB1550058B55D /* User.swift in Sources */,

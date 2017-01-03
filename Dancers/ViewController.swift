@@ -27,6 +27,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     fileprivate var sideState: SidebarStatus = .closed
     var colorType = ColorPattern.Blue
+    var videoMap:VideoMap?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.videoListTableView.estimatedRowHeight = 285
         self.videoListTableView.rowHeight = UITableViewAutomaticDimension
 
+        loadVideos()
     }
 
     override func viewDidLayoutSubviews() {
@@ -66,12 +68,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.videoMap?.videos!.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "videoListCell", for: indexPath as IndexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "videoListCell", for: indexPath)  as! VideoListCell
         cell.backgroundColor = UIColor.clear
+        cell.videoTitleLabel.text = self.videoMap?.videos![indexPath.row].title
+        cell.favoriteCountLabel.text = self.videoMap?.videos![indexPath.row].favorite_counter
+        cell.viewCountLabel.text = self.videoMap?.videos![indexPath.row].view_counter
+        cell.creatorNameLabel.text = self.videoMap?.videos![indexPath.row].creator
+        if let totalSec = self.videoMap?.videos![indexPath.row].length_seconds {
+           cell.playbackTimeLabel.text = Utils.convertSec(seconds: totalSec)
+        }
         return cell
     }
     
@@ -93,10 +102,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func registerUser() {
         
         let url = "\(BaseAPI)\(SignUp)"
-    
-        let para: Parameters = [
-            "device_code":"1"
-        ]
+        let para: Parameters = ["device_code":"1"]
 
         Alamofire.request(url, method: .post, parameters: para, encoding: JSONEncoding.default)
             .validate()
@@ -207,6 +213,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 self.sideMenuContainer.frame = CGRect(x: -300, y: 0, width: 300, height: self.view.frame.height)
                 
             }, completion: nil)
+        }
+        
+    }
+    
+    func loadVideos() {
+        
+        let url = "\(BaseAPI)\(VideoList)"
+        let para: Parameters = ["device_code":"1"]
+        
+        Alamofire.request(url, method: .post, parameters: para, encoding: JSONEncoding.default)
+            .validate()
+            .responseData { response in Utils.checkResponse(response) }
+            .responseObject { (response: DataResponse<VideoMap>) in
+                
+                switch response.result {
+                case .success:
+                    
+                    if let videoMap = response.result.value {
+                        self.videoMap = videoMap
+                    }
+                    self.videoListTableView.reloadData()
+                case .failure(let _):
+                    
+                    let alertController = UIAlertController(title: "Communication error", message: "Please try again in a good place of radio.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                    }
+                    alertController.addAction(okAction)
+                    
+                    DispatchQueue.main.async(execute: {
+                        self.present(alertController, animated: true, completion: nil)
+                    })
+                }
         }
         
     }
