@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var handleSideButton: UIButton!
     
     fileprivate var sideState: SidebarStatus = .closed
-    //var addedLayer = []
+    var colorType = ColorPattern.Blue
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,18 +132,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func setColor() {
         
+        let realm = try! Realm()
+        let rUser = realm.objects(RUser.self)
+        for user in rUser {
+            self.colorType = ColorPattern.getColorType(colorType: user.colorType)
+        }
+        
         // base color
-        self.view.backgroundColor = setColorPattern.Blue.makeBaseColor()
+        self.view.backgroundColor = self.colorType.makeBaseColor()
         self.videoListTableView.backgroundColor = UIColor.clear
         
         // gradiation
         let layer = CAGradientLayer()
         var gradiationColors:[Any] = []
-        gradiationColors = setColorPattern.Blue.makeGradation()
+        gradiationColors = self.colorType.makeGradation()
         layer.colors = gradiationColors
         layer.frame = CGRect(x: 0, y: 0 , width: self.view.frame.size.width, height: self.view.frame.size.height)
         self.view.layer.insertSublayer(layer, at: 0)
-        
 
     }
     
@@ -151,19 +156,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let layer = CAGradientLayer()
         var gradiationColors:[Any] = []
-        if colorType == setColorPattern.Blue.rawValue {
-            self.view.backgroundColor = setColorPattern.Blue.makeBaseColor()
-            gradiationColors = setColorPattern.Blue.makeGradation()
-        } else if colorType == setColorPattern.Orange.rawValue {
-            self.view.backgroundColor = setColorPattern.Orange.makeBaseColor()
-            gradiationColors = setColorPattern.Orange.makeGradation()
-        } else if colorType == setColorPattern.Black.rawValue {
-            self.view.backgroundColor = setColorPattern.Black.makeBaseColor()
-            gradiationColors = setColorPattern.Black.makeGradation()
+        if colorType == ColorPattern.Blue.rawValue {
+            self.view.backgroundColor = ColorPattern.Blue.makeBaseColor()
+            gradiationColors = ColorPattern.Blue.makeGradation()
+        } else if colorType == ColorPattern.Orange.rawValue {
+            self.view.backgroundColor = ColorPattern.Orange.makeBaseColor()
+            gradiationColors = ColorPattern.Orange.makeGradation()
+        } else if colorType == ColorPattern.Black.rawValue {
+            self.view.backgroundColor = ColorPattern.Black.makeBaseColor()
+            gradiationColors = ColorPattern.Black.makeGradation()
         }
         layer.colors = gradiationColors
         layer.frame = CGRect(x: 0, y: 0 , width: self.view.frame.size.width, height: self.view.frame.size.height)
-        self.view.layer.filters?.remove(at: 0)
+        self.view.layer.sublayers?.remove(at: 0)
         self.view.layer.insertSublayer(layer, at: 0)
     }
     

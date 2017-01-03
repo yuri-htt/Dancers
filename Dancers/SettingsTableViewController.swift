@@ -21,6 +21,11 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let realm = try! Realm()
+        let rUser = realm.objects(RUser.self)
+        for user in rUser {
+            self.selectedColorType = user.colorType
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,10 +44,10 @@ class SettingsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 3
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        for i in 0..<2 {
+        for i in 0...2 {
             let indexPath: NSIndexPath = NSIndexPath(row: i, section: 0)
             if let cell: UITableViewCell = tableView.cellForRow(at: indexPath as IndexPath) {
                 cell.accessoryType = .none
@@ -55,7 +60,17 @@ class SettingsTableViewController: UITableViewController {
             self.selectedColorType = cell.textLabel?.text
         }
     }
-
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
+        if cell.textLabel?.text == self.selectedColorType {
+            cell.accessoryType = .checkmark
+        }
+        
+        return cell
+    }
+    
     @IBAction func didPressNavBtn(_ sender: Any) {
         let realm = try! Realm()
         let rUser = realm.objects(RUser)

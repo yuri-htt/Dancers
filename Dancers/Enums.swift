@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-enum setColorPattern:String {
+enum ColorPattern:String {
     case Blue   = "Blue"
     case Orange = "Orange"
     case Black  = "Black"
@@ -49,4 +49,7 @@ enum setColorPattern:String {
         return [startColor, endColor]
     }
     
+    static func getColorType(colorType:String) -> ColorPattern {
+        return ColorPattern(rawValue: colorType) ?? ColorPattern.Blue
+    }
 }

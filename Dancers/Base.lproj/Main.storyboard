@@ -785,7 +785,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="G10-FP-Pd7">
-                        <barButtonItem key="rightBarButtonItem" image="backW40" style="plain" id="4is-0K-9x7">
+                        <barButtonItem key="rightBarButtonItem" image="backW25" style="plain" id="4is-0K-9x7">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="didPressNavBtn:" destination="Lpg-o1-OdO" id="eOf-wa-UHV"/>
@@ -817,13 +817,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="backW40" width="40" height="40"/>
+        <image name="backW25" width="25" height="25"/>
         <image name="bookW50" width="50" height="50"/>
         <image name="downLoadButton" width="72" height="72"/>
         <image name="facebookIcon" width="25" height="25"/>
         <image name="favoriteIcon" width="25" height="25"/>
         <image name="heartW50" width="50" height="50"/>
-        <image name="menu" width="25" height="25"/>
+        <image name="menu" width="20" height="20"/>
         <image name="playBackTimeIcon" width="25" height="25"/>
         <image name="playList" width="25" height="25"/>
         <image name="search" width="25" height="25"/>
