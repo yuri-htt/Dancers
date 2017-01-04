@@ -53,3 +53,9 @@ enum ColorPattern:String {
         return ColorPattern(rawValue: colorType) ?? ColorPattern.Blue
     }
 }
+
+enum VideoSortBy:String {
+    case favoriteCount = "1"
+    case viewCount     = "2"
+    case new           = "3"
+}

@@ -27,8 +27,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var handleSideButton: UIButton!
     
     fileprivate var sideState: SidebarStatus = .closed
-    var colorType = ColorPattern.Blue
+    var colorType:ColorPattern = .Blue
     var videoMap:VideoMap?
+    var sortType:VideoSortBy = .favoriteCount
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,6 +149,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.colorType = ColorPattern.getColorType(colorType: user.colorType)
         }
         
+        headerView.backgroundColor = headerViewColor
+            
         // base color
         self.view.backgroundColor = self.colorType.makeBaseColor()
         self.videoListTableView.backgroundColor = UIColor.clear
@@ -157,7 +160,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         var gradiationColors:[Any] = []
         gradiationColors = self.colorType.makeGradation()
         layer.colors = gradiationColors
-        layer.frame = CGRect(x: 0, y: 0 , width: self.view.frame.size.width, height: self.view.frame.size.height)
+        layer.frame = CGRect(x: 0, y: 108 , width: self.view.frame.size.width, height: self.view.frame.size.height)
         self.view.layer.insertSublayer(layer, at: 0)
 
     }
@@ -218,13 +221,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
             }, completion: nil)
         }
-        
     }
+    
+    @IBAction func sortTypeChanged(_ sender: UISegmentedControl) {
+
+        switch sender.selectedSegmentIndex {
+        case 0:
+            self.sortType = VideoSortBy.favoriteCount
+        case 1:
+            self.sortType = VideoSortBy.viewCount
+        default:
+            self.sortType = VideoSortBy.favoriteCount
+        }
+        loadVideos()
+    }
+
     
     func loadVideos() {
         
         let url = "\(BaseAPI)\(VideoList)"
-        let para: Parameters = ["device_code":"1"]
+        let para: Parameters = [
+            "device_code":"1",
+            "sort_code":"\(self.sortType.rawValue)"
+        ]
         
         Alamofire.request(url, method: .post, parameters: para, encoding: JSONEncoding.default)
             .validate()
