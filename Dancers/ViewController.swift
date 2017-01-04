@@ -160,7 +160,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         var gradiationColors:[Any] = []
         gradiationColors = self.colorType.makeGradation()
         layer.colors = gradiationColors
-        layer.frame = CGRect(x: 0, y: 108 , width: self.view.frame.size.width, height: self.view.frame.size.height)
+        layer.frame = CGRect(x: 0, y: 76 , width: self.view.frame.size.height, height: self.view.frame.size.height)
         self.view.layer.insertSublayer(layer, at: 0)
 
     }
@@ -206,7 +206,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
                 self.handleSideButton.isEnabled = true
                 self.handleSideButton.alpha = 0.6
-                self.sideMenuContainer.frame = CGRect(x: 0, y: 0, width: 300, height: self.view.frame.height)
+                self.sideMenuContainer.frame = CGRect(x: 0, y: 0, width: 250, height: self.view.frame.height)
                 
             }, completion: nil)
             
