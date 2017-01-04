@@ -11,6 +11,7 @@ import RealmSwift
 import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
+import Kingfisher
 
 enum SidebarStatus {
     case opened
@@ -74,6 +75,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "videoListCell", for: indexPath)  as! VideoListCell
         cell.backgroundColor = UIColor.clear
+
+        
+        cell.thumbnailImageView.kf.setImage(with: URL(string: (self.videoMap?.videos![indexPath.row].thumbnail_url)!))
         cell.videoTitleLabel.text = self.videoMap?.videos![indexPath.row].title
         cell.favoriteCountLabel.text = self.videoMap?.videos![indexPath.row].favorite_counter
         cell.viewCountLabel.text = self.videoMap?.videos![indexPath.row].view_counter

@@ -25,6 +25,7 @@ class Video: Mappable {
     var create_date:String?
     var creator:String?
     var description:String?
+    var embedded_url:String?
     var favorite_counter:String?
     var id :String?
     var length_seconds:String?
@@ -39,6 +40,7 @@ class Video: Mappable {
         create_date      <- map["create_date"]
         creator          <- map["creator"]
         description      <- map["description"]
+        embedded_url     <- map["embedded_url"]
         favorite_counter <- map["favorite_counter"]
         id               <- map["id"]
         length_seconds   <- map["length_seconds"]
