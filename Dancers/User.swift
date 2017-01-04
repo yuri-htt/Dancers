@@ -10,12 +10,16 @@ import ObjectMapper
 
 class User: Mappable {
     
-    var id        :String?
+    // FIXME: 無駄な空白の削除（2017/01/04）
+    var id :String?
+    // var id        :String?
     
     required init?(map: Map) {
     }
     
     func mapping(map: Map){
-        id            <- map["id"]
+        // FIXME: 無駄な空白の削除（2017/01/04）
+        id <- map["id"]
+        // id            <- map["id"]
     }
 }
