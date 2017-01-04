@@ -18,21 +18,38 @@ enum SidebarStatus {
     case closed
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+enum SearchAreaStatus {
+    case opened
+    case closed
+}
+
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
-    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var searchAreaView: UIView!
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var segmentedControlAreaView: UIView!
     @IBOutlet weak var sortTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var videoListTableView: UITableView!
     @IBOutlet weak var sideMenuContainer: UIView!
     @IBOutlet weak var handleSideButton: UIButton!
     
+    @IBOutlet weak var searchAreaHeightConstraint: NSLayoutConstraint!
+    
     fileprivate var sideState: SidebarStatus = .closed
+    fileprivate var searchAreaState: SidebarStatus = .closed
     var colorType:ColorPattern = .Blue
     var videoMap:VideoMap?
+    var searchKeyword:String = ""
     var sortType:VideoSortBy = .favoriteCount
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchAreaView.isHidden = true
+        searchTextField.isHidden = true
+        searchAreaHeightConstraint.constant = 0
+        
+        searchTextField.delegate = self
         
         checkUserInfo()
         setColor()
@@ -149,7 +166,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.colorType = ColorPattern.getColorType(colorType: user.colorType)
         }
         
-        headerView.backgroundColor = headerViewColor
+        searchAreaView.backgroundColor = headerViewColor
+        segmentedControlAreaView.backgroundColor = headerViewColor
             
         // base color
         self.view.backgroundColor = self.colorType.makeBaseColor()
@@ -223,6 +241,33 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    @IBAction func didPressSearchBtn(_ sender: UIBarButtonItem) {
+
+        if self.searchAreaState == .closed {
+            
+            self.searchAreaState = .opened
+            self.searchAreaView.isHidden = false
+            self.searchTextField.isHidden = false
+            
+            UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
+                self.searchAreaHeightConstraint.constant = 44
+            }, completion: nil)
+            
+        } else {
+            
+            self.searchAreaState = .closed
+            self.searchAreaView.isHidden = true
+            self.searchTextField.isHidden = true
+            self.searchKeyword = ""
+            
+            UIView.animate(withDuration: 0.24, delay: 0, options: .curveEaseOut, animations: {
+                self.searchAreaHeightConstraint.constant = 0
+            }, completion: nil)
+                
+        }
+        
+    }
+    
     @IBAction func sortTypeChanged(_ sender: UISegmentedControl) {
 
         switch sender.selectedSegmentIndex {
@@ -236,15 +281,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         loadVideos()
     }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        
+        self.searchKeyword = self.searchTextField.text!
+        searchTextField.resignFirstResponder()
+        loadVideos()
+        
+        return true
+    }
     
     func loadVideos() {
         
         let url = "\(BaseAPI)\(VideoList)"
         let para: Parameters = [
             "device_code":"1",
-            "sort_code":"\(self.sortType.rawValue)"
+            "sort_code":"\(self.sortType.rawValue)",
+            "title":"\(self.searchKeyword)"
         ]
-        
+        print(para)
         Alamofire.request(url, method: .post, parameters: para, encoding: JSONEncoding.default)
             .validate()
             .responseData { response in Utils.checkResponse(response) }

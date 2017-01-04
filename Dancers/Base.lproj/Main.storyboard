@@ -41,8 +41,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOq-za-sLK">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Osh-t5-szp">
                                 <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VlC-qG-yeQ">
+                                        <rect key="frame" x="20" y="7" width="335" height="30"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2ne-EQ-ZK9">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="oXy-Ww-sni"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="W2z-fI-XSc"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.19215686274509805" green="0.21176470588235294" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="VlC-qG-yeQ" firstAttribute="centerY" secondItem="Osh-t5-szp" secondAttribute="centerY" id="1BU-5r-c1j"/>
+                                    <constraint firstAttribute="height" constant="44" id="2kc-qo-NxF"/>
+                                    <constraint firstAttribute="trailing" secondItem="VlC-qG-yeQ" secondAttribute="trailing" constant="20" id="Ppn-Bu-1kw"/>
+                                    <constraint firstItem="VlC-qG-yeQ" firstAttribute="centerX" secondItem="Osh-t5-szp" secondAttribute="centerX" id="Uku-jm-OAo"/>
+                                    <constraint firstItem="VlC-qG-yeQ" firstAttribute="leading" secondItem="Osh-t5-szp" secondAttribute="leading" constant="20" id="qs8-CT-p3b"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOq-za-sLK">
+                                <rect key="frame" x="0.0" y="108" width="375" height="44"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BDr-dT-PDe">
                                         <rect key="frame" x="20" y="8" width="335" height="29"/>
@@ -69,7 +99,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="21Y-wU-kso">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="152" width="375" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="videoListCell" rowHeight="300" id="IoV-uT-oaM" customClass="VideoListCell" customModule="Dancers" customModuleProvider="target">
@@ -245,11 +275,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Osh-t5-szp" firstAttribute="leading" secondItem="zrp-qy-4RV" secondAttribute="leading" id="0Gh-xP-yMr"/>
                             <constraint firstItem="21Y-wU-kso" firstAttribute="leading" secondItem="zrp-qy-4RV" secondAttribute="leading" id="3O9-Yt-eZK"/>
                             <constraint firstAttribute="trailing" secondItem="21Y-wU-kso" secondAttribute="trailing" id="82C-vU-3YP"/>
+                            <constraint firstItem="Osh-t5-szp" firstAttribute="top" secondItem="XKk-kt-Kgl" secondAttribute="bottom" id="Axr-dG-HFd"/>
                             <constraint firstItem="Wmb-iq-87o" firstAttribute="top" secondItem="21Y-wU-kso" secondAttribute="bottom" id="IM7-hG-TA7"/>
-                            <constraint firstItem="IOq-za-sLK" firstAttribute="top" secondItem="XKk-kt-Kgl" secondAttribute="bottom" id="YLw-ms-YVV"/>
+                            <constraint firstItem="IOq-za-sLK" firstAttribute="top" secondItem="Osh-t5-szp" secondAttribute="bottom" id="LSO-aY-Nly"/>
                             <constraint firstAttribute="trailing" secondItem="IOq-za-sLK" secondAttribute="trailing" id="ZfD-9N-8yu"/>
+                            <constraint firstAttribute="trailing" secondItem="Osh-t5-szp" secondAttribute="trailing" id="dEb-Au-3UE"/>
                             <constraint firstItem="IOq-za-sLK" firstAttribute="leading" secondItem="zrp-qy-4RV" secondAttribute="leading" id="g5Z-is-FL6"/>
                             <constraint firstItem="21Y-wU-kso" firstAttribute="top" secondItem="IOq-za-sLK" secondAttribute="bottom" id="xLj-N8-cGX"/>
                         </constraints>
@@ -267,12 +300,18 @@
                             </barButtonItem>
                             <barButtonItem image="search" id="UVI-eW-Y1u">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="didPressSearchBtn:" destination="jEn-aQ-LOl" id="ZB3-TL-URm"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="handleSideButton" destination="bo9-CC-2GB" id="BvS-rm-SkP"/>
-                        <outlet property="headerView" destination="IOq-za-sLK" id="5Il-qB-swU"/>
+                        <outlet property="searchAreaHeightConstraint" destination="2kc-qo-NxF" id="z2I-ub-IZJ"/>
+                        <outlet property="searchAreaView" destination="Osh-t5-szp" id="xux-aD-n2a"/>
+                        <outlet property="searchTextField" destination="2ne-EQ-ZK9" id="QgD-J8-gRc"/>
+                        <outlet property="segmentedControlAreaView" destination="IOq-za-sLK" id="nub-Me-jqz"/>
                         <outlet property="sideMenuContainer" destination="UFt-7g-1ng" id="aZ1-9Q-x4Q"/>
                         <outlet property="sortTypeSegmentedControl" destination="BDr-dT-PDe" id="hfL-CB-kbb"/>
                         <outlet property="videoListTableView" destination="21Y-wU-kso" id="EiE-AL-XCP"/>
