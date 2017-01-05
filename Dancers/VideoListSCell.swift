@@ -1,17 +1,15 @@
 //
-//  VideoListCell.swift
+//  VideoListSCell.swift
 //  Dancers
 //
-//  Created by 田山　由理 on 2016/12/31.
-//  Copyright © 2016年 Yuri Tayama. All rights reserved.
+//  Created by 田山　由理 on 2017/01/05.
+//  Copyright © 2017年 Yuri Tayama. All rights reserved.
 //
 
 import UIKit
 
-class VideoListCell: UITableViewCell {
+class VideoListSCell: UITableViewCell {
 
-    @IBOutlet weak var videoView: UIView!
-    @IBOutlet weak var thumbnailImageView: UIImageView!    
     @IBOutlet weak var videoTitleLabel: UILabel!
     @IBOutlet weak var favoriteCountLabel: UILabel!
     @IBOutlet weak var viewCountLabel: UILabel!
@@ -20,13 +18,10 @@ class VideoListCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

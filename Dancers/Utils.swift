@@ -15,9 +15,8 @@ class Utils {
     
     class func checkResponse(_ response : DataResponse<Data> ) {
         if let response = response.response , response.statusCode == 401 {
-            
             print("401 Unauth")
-            
+
         }
     }
     

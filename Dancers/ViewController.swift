@@ -45,19 +45,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchAreaView.isHidden = true
-        searchTextField.isHidden = true
-        searchAreaHeightConstraint.constant = 0
-        
-        searchTextField.delegate = self
-        
-        checkUserInfo()
-        setColor()
-        
-        self.videoListTableView.estimatedRowHeight = 285
-        self.videoListTableView.rowHeight = UITableViewAutomaticDimension
-
+        checkUserExisting()
+        setSearchArea()
+        setCellHeight()
+        setColors()
         loadVideos()
+        
     }
 
     override func viewDidLayoutSubviews() {
@@ -78,10 +71,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
     }
 
-
+    /* TableView */
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -106,13 +98,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
-    func tableView(table: UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath) {
+    func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
 
+        if let videoMap = self.videoMap, let videos = videoMap.videos, videos.count > indexPath.row {
+            performSegue(withIdentifier: "ShowVideoDetail", sender: indexPath)
+        }
+        
     }
     
-    func checkUserInfo() {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "ShowVideoDetail" {
+            let videoDetailViewController = segue.destination as! VideoDetailViewController
+            let indexPath = sender as! IndexPath
+            videoDetailViewController.video = self.videoMap?.videos![indexPath.row]
+        }
+    }
+    
+    /* Functions */
+    func checkUserExisting() {
         
-        // Realmにユーザー情報が登録されているか(=既存ユーザー)確認
         let realm = try! Realm()
         let user = realm.objects(RUser.self)
         if user.count == 0 {
@@ -130,20 +135,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             .validate()
             .responseData { response in Utils.checkResponse(response) }
             .responseObject { (response: DataResponse<User>) in
+                
                 switch response.result {
                 case .success:
-                    //  save to Realm
                     if let user = response.result.value {
                         let realm = try! Realm()
-                        var rUser = RUser()
+                        let rUser = RUser()
                         try! realm.write {
                             rUser.id = Int(user.id!)!
                             realm.add(rUser)
                         }
                     }
 
-                case .failure(let _):
-                    // alert
+                case .failure( _):
                     let alertController = UIAlertController(title: "Communication error", message: "Please try again in a good place of radio.", preferredStyle: .alert)
                     
                     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
@@ -154,11 +158,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         self.present(alertController, animated: true, completion: nil)
                     })
                 }
-
         }
     }
     
-    func setColor() {
+    func setSearchArea() {
+        
+        searchAreaView.isHidden = true
+        searchTextField.isHidden = true
+        searchAreaHeightConstraint.constant = 0
+        searchTextField.delegate = self
+        
+    }
+    
+    func setCellHeight() {
+        
+        self.videoListTableView.estimatedRowHeight = 285
+        self.videoListTableView.rowHeight = UITableViewAutomaticDimension
+    
+    }
+    
+    func setColors() {
         
         let realm = try! Realm()
         let rUser = realm.objects(RUser.self)
@@ -201,13 +220,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         layer.frame = CGRect(x: 0, y: 0 , width: self.view.frame.size.width, height: self.view.frame.size.height)
         self.view.layer.sublayers?.remove(at: 0)
         self.view.layer.insertSublayer(layer, at: 0)
+        
     }
     
     @IBAction func didPressNavBtn(_ sender: Any) {
-        
         sideState = SidebarStatus.opened
         changeSideMenuStatus(sideState)
-        
     }
     
     @IBAction func closeSideMenuAciton(_ sender: Any) {
@@ -279,6 +297,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.sortType = VideoSortBy.favoriteCount
         }
         loadVideos()
+        
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
@@ -298,7 +317,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             "sort_code":"\(self.sortType.rawValue)",
             "title":"\(self.searchKeyword)"
         ]
-        print(para)
+        
         Alamofire.request(url, method: .post, parameters: para, encoding: JSONEncoding.default)
             .validate()
             .responseData { response in Utils.checkResponse(response) }
@@ -306,18 +325,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
                 switch response.result {
                 case .success:
-                    
                     if let videoMap = response.result.value {
                         self.videoMap = videoMap
                     }
                     self.videoListTableView.reloadData()
-                case .failure(let _):
                     
+                case .failure( _):
                     let alertController = UIAlertController(title: "Communication error", message: "Please try again in a good place of radio.", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
                     }
                     alertController.addAction(okAction)
-                    
                     DispatchQueue.main.async(execute: {
                         self.present(alertController, animated: true, completion: nil)
                     })
@@ -328,9 +345,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 }
 
 extension ViewController: SettingsTableViewControllerDelegate {
+    
     func settingsTableViewController(colortType:String) {
         sideState = SidebarStatus.closed
         changeSideMenuStatus(sideState)
         setColor(colorType: colortType)
     }
+    
 }
