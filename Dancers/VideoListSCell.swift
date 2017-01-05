@@ -10,6 +10,7 @@ import UIKit
 
 class VideoListSCell: UITableViewCell {
 
+    @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var videoTitleLabel: UILabel!
     @IBOutlet weak var favoriteCountLabel: UILabel!
     @IBOutlet weak var viewCountLabel: UILabel!

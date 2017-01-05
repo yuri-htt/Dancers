@@ -8,19 +8,22 @@
 
 import UIKit
 import RealmSwift
+import WebKit
 
 enum ExpandBtnStatus {
     case opened
     case closed
 }
 
-class VideoDetailViewController:UIViewController, UITableViewDataSource, UITableViewDelegate {
+class VideoDetailViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, WKNavigationDelegate {
 
     fileprivate var expandBtnState: ExpandBtnStatus = .closed
     var colorType:ColorPattern = .Blue
+    var videoMap:VideoMap?
     var video:Video?
     
     @IBOutlet weak var backNavBtn: UIBarButtonItem!
+    @IBOutlet weak var videoWebView: UIWebView!
     @IBOutlet weak var videoDetailTableView: UITableView!
     
     override func viewDidLoad() {
@@ -28,6 +31,7 @@ class VideoDetailViewController:UIViewController, UITableViewDataSource, UITable
 
         setColors()
         setCellHeight()
+        setVideo()
         
     }
 
@@ -62,12 +66,20 @@ class VideoDetailViewController:UIViewController, UITableViewDataSource, UITable
         
     }
     
+    func setVideo() {
+        if let url = self.video?.embedded_url {
+            let urlRequest = URLRequest(url: NSURL(string:url) as! URL)
+            //let urlRequest = URLRequest(url: NSURL(string:"https://www.youtube.com/watch?v=0v5wtDt2Wbc&feature=player_embedded") as! URL)
+            self.videoWebView.loadRequest(urlRequest)
+        }
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return (self.videoMap?.videos!.count)! + 2
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -111,7 +123,16 @@ class VideoDetailViewController:UIViewController, UITableViewDataSource, UITable
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "VideoListSCell", for: indexPath)  as! VideoListSCell
+            let index = indexPath.row - 2
             cell.backgroundColor = UIColor.clear
+            cell.thumbnailImageView.kf.setImage(with: URL(string: (self.videoMap?.videos![index].thumbnail_url)!))
+            cell.videoTitleLabel.text = self.videoMap?.videos![index].title
+            cell.favoriteCountLabel.text = self.videoMap?.videos![index].favorite_counter
+            cell.viewCountLabel.text = self.videoMap?.videos![index].view_counter
+            cell.creatorNameLabel.text = self.videoMap?.videos![index].creator
+            if let totalSec = self.videoMap?.videos![index].length_seconds {
+                cell.playbackTimeLabel.text = Utils.convertSec(seconds: totalSec)
+            }
             return cell
         }
     }
@@ -121,18 +142,28 @@ class VideoDetailViewController:UIViewController, UITableViewDataSource, UITable
         if self.expandBtnState == .closed {
             self.expandBtnState = .opened
             let upperAngle:CGFloat = CGFloat(180 * M_PI / 180)
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
                 sender.transform = CGAffineTransform(rotationAngle: upperAngle)
             }, completion: nil)
             openDescriptionArea(open: true)
         } else {
             self.expandBtnState = .closed
             let underAngle:CGFloat = CGFloat(0 * M_PI / 180)
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
                 sender.transform = CGAffineTransform(rotationAngle: underAngle)
             }, completion: nil)
             openDescriptionArea(open: false)
         }
+    }
+    
+    func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
+        
+        if let videoMap = self.videoMap, let videos = videoMap.videos, videos.count > indexPath.row - 2 {
+            self.video = self.videoMap?.videos![indexPath.row - 2]
+            setVideo()
+            self.videoDetailTableView.reloadData()
+        }
+        
     }
     
     func openDescriptionArea(open:Bool) {

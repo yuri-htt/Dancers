@@ -86,7 +86,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "videoListCell", for: indexPath)  as! VideoListCell
         cell.backgroundColor = UIColor.clear
 
-        
         cell.thumbnailImageView.kf.setImage(with: URL(string: (self.videoMap?.videos![indexPath.row].thumbnail_url)!))
         cell.videoTitleLabel.text = self.videoMap?.videos![indexPath.row].title
         cell.favoriteCountLabel.text = self.videoMap?.videos![indexPath.row].favorite_counter
@@ -111,6 +110,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if segue.identifier == "ShowVideoDetail" {
             let videoDetailViewController = segue.destination as! VideoDetailViewController
             let indexPath = sender as! IndexPath
+            videoDetailViewController.videoMap = self.videoMap
             videoDetailViewController.video = self.videoMap?.videos![indexPath.row]
         }
     }
