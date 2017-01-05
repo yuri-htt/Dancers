@@ -21,7 +21,6 @@ class VideoDetailCell: UITableViewCell {
     @IBOutlet weak var facebookBtn: UIButton!
     @IBOutlet weak var expandBtn: UIButton!
     
-    @IBOutlet weak var descriptionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

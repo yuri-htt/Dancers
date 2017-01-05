@@ -23,6 +23,7 @@
 		DA9737861E1D5D2F003D84BA /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9737851E1D5D2F003D84BA /* VideoDetailViewController.swift */; };
 		DA9737881E1D6231003D84BA /* VideoDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9737871E1D6231003D84BA /* VideoDetailCell.swift */; };
 		DA97378A1E1D626B003D84BA /* VideoListSCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9737891E1D626B003D84BA /* VideoListSCell.swift */; };
+		DA97378C1E1E49F8003D84BA /* VideoDetailDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97378B1E1E49F8003D84BA /* VideoDetailDescriptionCell.swift */; };
 		DADD7A701E17929A00C0D2A6 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A6F1E17929A00C0D2A6 /* Enums.swift */; };
 		DADD7A741E17AD7C00C0D2A6 /* SegmentedControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A731E17AD7C00C0D2A6 /* SegmentedControlCell.swift */; };
 		DADD7A761E17ADDF00C0D2A6 /* VideoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD7A751E17ADDF00C0D2A6 /* VideoListCell.swift */; };
@@ -49,6 +50,7 @@
 		DA9737851E1D5D2F003D84BA /* VideoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		DA9737871E1D6231003D84BA /* VideoDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailCell.swift; sourceTree = "<group>"; };
 		DA9737891E1D626B003D84BA /* VideoListSCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListSCell.swift; sourceTree = "<group>"; };
+		DA97378B1E1E49F8003D84BA /* VideoDetailDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailDescriptionCell.swift; sourceTree = "<group>"; };
 		DADD7A6F1E17929A00C0D2A6 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		DADD7A731E17AD7C00C0D2A6 /* SegmentedControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlCell.swift; sourceTree = "<group>"; };
 		DADD7A751E17ADDF00C0D2A6 /* VideoListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListCell.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				DADD7A751E17ADDF00C0D2A6 /* VideoListCell.swift */,
 				DA9737871E1D6231003D84BA /* VideoDetailCell.swift */,
 				DA9737891E1D626B003D84BA /* VideoListSCell.swift */,
+				DA97378B1E1E49F8003D84BA /* VideoDetailDescriptionCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				DA9737881E1D6231003D84BA /* VideoDetailCell.swift in Sources */,
 				DA9737841E1BE995003D84BA /* Video.swift in Sources */,
 				DA44259B1E16C1F4005DA551 /* AppDelegate.swift in Sources */,
+				DA97378C1E1E49F8003D84BA /* VideoDetailDescriptionCell.swift in Sources */,
 				DADD7A761E17ADDF00C0D2A6 /* VideoListCell.swift in Sources */,
 				DA9061F31E1AB1550058B55D /* User.swift in Sources */,
 			);

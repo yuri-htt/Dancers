@@ -29,7 +29,6 @@ class VideoDetailViewController:UIViewController, UITableViewDataSource, UITable
         setColors()
         setCellHeight()
         
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,7 +57,7 @@ class VideoDetailViewController:UIViewController, UITableViewDataSource, UITable
     
     func setCellHeight() {
         
-        self.videoDetailTableView.estimatedRowHeight = 285
+        self.videoDetailTableView.estimatedRowHeight = 270
         self.videoDetailTableView.rowHeight = UITableViewAutomaticDimension
         
     }
@@ -68,20 +67,26 @@ class VideoDetailViewController:UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 8
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return 170
+            return UITableViewAutomaticDimension
+        case 1:
+            if expandBtnState == .opened {
+                return UITableViewAutomaticDimension
+            } else {
+                return 0
+            }
         default:
             return 100
         }
     }
     
     @IBAction func didPressbackNavBtn(_ sender: UIBarButtonItem) {
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController!.popToRootViewController(animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,9 +101,13 @@ class VideoDetailViewController:UIViewController, UITableViewDataSource, UITable
             if let totalSec = self.video?.length_seconds {
                 cell.playbackTimeLabel.text = Utils.convertSec(seconds: totalSec)
             }
-            cell.descriptionLabel.text = self.video?.description
-            
             cell.expandBtn.addTarget(self, action: #selector(VideoDetailViewController.expandBtnTapped(_:)), for: .touchUpInside)
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "VideoDetailDescriptionCell", for: indexPath)  as! VideoDetailDescriptionCell
+            cell.backgroundColor = UIColor.clear
+            cell.descriptionLabel.text = self.video?.description
+            cell.layoutIfNeeded()
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "VideoListSCell", for: indexPath)  as! VideoListSCell
@@ -115,12 +124,34 @@ class VideoDetailViewController:UIViewController, UITableViewDataSource, UITable
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 sender.transform = CGAffineTransform(rotationAngle: upperAngle)
             }, completion: nil)
+            openDescriptionArea(open: true)
         } else {
             self.expandBtnState = .closed
-            let underAngle:CGFloat = CGFloat(-180 * M_PI / 180)
+            let underAngle:CGFloat = CGFloat(0 * M_PI / 180)
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 sender.transform = CGAffineTransform(rotationAngle: underAngle)
             }, completion: nil)
+            openDescriptionArea(open: false)
+        }
+    }
+    
+    func openDescriptionArea(open:Bool) {
+        
+        let indexPath:NSIndexPath = NSIndexPath(row: 1, section: 0)
+        let cell = self.videoDetailTableView.dequeueReusableCell(withIdentifier: "VideoDetailDescriptionCell", for: indexPath as IndexPath)  as! VideoDetailDescriptionCell
+        
+        if open {
+            self.videoDetailTableView.beginUpdates()
+            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                cell.isHidden = false
+            })
+            self.videoDetailTableView.endUpdates()
+        } else {
+            self.videoDetailTableView.beginUpdates()
+            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                cell.isHidden = true
+            })
+            self.videoDetailTableView.endUpdates()
         }
     }
     

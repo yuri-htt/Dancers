@@ -21,7 +21,7 @@ class Utils {
     }
     
     class func convertSec(seconds:String) -> String {
-        let displayTime:String
+        var displayTime:String = ""
 
         // FIXME: ロジックの修正（2017/01/04）
         let s: Int = Int(seconds)! % 60
@@ -41,23 +41,7 @@ class Utils {
 
         // ケース②（460秒を、00:07:40と表示したいケース）
         // 個人的にはこっちな気がする（その場合、変数displayTimeは不要で、そのままreturnしてOK）
-        displayTime = String(format: "%02d:%02d:%02d", h, m, s)
-
-        /*
-        let displayTime:String
-        
-        let hour = Int(seconds)! / 3600
-        let min = Int(seconds)! % 3600 / 60
-        let sec = Int(seconds)! - (hour * 3600 + min * 60)
-        
-        if hour > 0 {
-            displayTime = String(hour) + ":" + String(min) + ":" + String(sec)
-        } else if min > 0 {
-            displayTime = String(min) + ":" + String(sec)
-        } else {
-            displayTime = String(sec)
-        }
-        */
+        //displayTime = String(format: "%02d:%02d:%02d", h, m, s)
 
         return displayTime
     }
