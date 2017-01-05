@@ -25,10 +25,12 @@ class LeftSideMenuViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        // TODO: 定数化、またはリストを定義してCountする形式にできない？（2017/01/04）
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // TODO: 定数化、またはリストを定義してCountする形式にできない？（2017/01/04）
         return 3
     }
     
