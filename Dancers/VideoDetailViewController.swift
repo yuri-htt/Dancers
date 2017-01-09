@@ -1,3 +1,4 @@
+
 //
 //  VideoDetailViewController.swift
 //  Dancers
@@ -15,7 +16,7 @@ enum ExpandBtnStatus {
     case closed
 }
 
-class VideoDetailViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, WKNavigationDelegate {
+class VideoDetailViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, WKNavigationDelegate, URLSessionDownloadDelegate {
 
     fileprivate var expandBtnState: ExpandBtnStatus = .closed
     var colorType:ColorPattern = .Blue
@@ -114,6 +115,7 @@ class VideoDetailViewController:UIViewController, UITableViewDataSource, UITable
                 cell.playbackTimeLabel.text = Utils.convertSec(seconds: totalSec)
             }
             cell.expandBtn.addTarget(self, action: #selector(VideoDetailViewController.expandBtnTapped(_:)), for: .touchUpInside)
+            cell.downloadbtn.addTarget(self, action: #selector(VideoDetailViewController.downloadbtnTapped(_:)), for: .touchUpInside)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "VideoDetailDescriptionCell", for: indexPath)  as! VideoDetailDescriptionCell
@@ -186,4 +188,222 @@ class VideoDetailViewController:UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    func downloadbtnTapped(_ sender: UIButton) {
+        
+        startDownloadTask()
+        
+//        // 通信のコンフィグを用意.
+//        let config: URLSessionConfiguration = URLSessionConfiguration.background(withIdentifier: "backgroundSession")
+//        
+//        // Sessionを作成する.
+//        let session: URLSession = URLSession(configuration: config, delegate: self, delegateQueue: nil)
+//        
+//        // ダウンロード先のURLからリクエストを生成.
+//        let url:NSURL = NSURL(string: (self.video?.embedded_url!)!)!
+//        let request: URLRequest =  URLRequest(url: url as URL)
+//        
+//        // ダウンロードタスクを生成.
+//        let myTask: URLSessionDownloadTask = session.downloadTask(with: request)
+//        
+//        // タスクを実行.
+//        myTask.resume()
+//        
+//        //すでにダウンロードされている数を取得
+//        let myDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
+//        let cache = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
+//        
+//        print(try! FileManager.default.displayName(atPath: cache))
+        
+    }
+    
+    // バックグラウンドで動作する非同期通信
+    func startDownloadTask() {
+        
+        let sessionConfig = URLSessionConfiguration.background(withIdentifier: "myapp-background")
+        let session = URLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
+        
+        let url = URL(string: self.video!.embedded_url!)!
+        
+        let downloadTask = session.downloadTask(with: url)
+        downloadTask.resume()
+        
+    }
+    
+    // 現在時刻からユニークな文字列を得る
+    func getIdFromDateTime() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd-HH-mm-ss"
+        return dateFormatter.string(from: Date())
+    }
+    
+    // 保存するディレクトリのパス
+    func getSaveDirectory() -> String {
+        
+        let fileManager = Foundation.FileManager.default
+        
+        // ドキュメントディレクトリのルートパスを取得して、それにフォルダ名を追加
+        let path = NSSearchPathForDirectoriesInDomains(Foundation.FileManager.SearchPathDirectory.documentDirectory, Foundation.FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/DownloadFiles/"
+        
+        // ディレクトリがない場合は作る
+        if !fileManager.fileExists(atPath: path) {
+            createDir(path: path)
+        }
+        
+        return path
+    }
+    
+    // ディレクトリを作成
+    func createDir(path: String) {
+        do {
+            let fileManager = Foundation.FileManager.default
+            try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+        } catch let error as NSError {
+            print("createDir: \(error)")
+        }
+    }
+    
+    /*
+     ダウンロード終了時に呼び出されるデリゲート.
+     */
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        
+        print("finish download")
+        
+        var data: NSData!
+        
+        do {
+            data = try NSData(contentsOf: location, options: NSData.ReadingOptions.alwaysMapped)
+        } catch {
+            print(error)
+        }
+        
+        do {
+            if let data = NSData(contentsOf: location) {
+                
+                let fileExtension = location.pathExtension
+                let filePath = getSaveDirectory() + getIdFromDateTime() + "." + fileExtension
+                
+                print(filePath)
+                
+                try data.write(toFile: filePath, options: .atomic)
+                
+            }
+        } catch let error as NSError {
+            print("download error: \(error)")
+        }
+       
+    }
+    
+
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        // ダウンロード進行中の処理
+        
+        let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        
+        // ダウンロードの進捗をログに表示
+        print(String(format: "%.2f", progress * 100) + "%")
+     
+
+    }
+    
+    
+    /*
+     タスク終了時に呼び出されるデリゲート.
+     */
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        
+        if error == nil {
+            print("ダウンロードが完了しました")
+        } else {
+            print("ダウンロードが失敗しました")
+        }
+        
+    }
+    
+    func getData(){
+        
+        let sessionConfig = URLSessionConfiguration.default
+        
+        let session = URLSession(configuration: sessionConfig)
+        
+        guard let text = self.video?.embedded_url else { return }
+        
+        let url = NSURL(string: text)!
+        
+        let task = session.dataTask(with: url as URL) {
+            
+            (data:Data?,response:URLResponse?,error:Error?) in
+            
+            guard let getData = data else{
+                session.invalidateAndCancel()
+                return
+            }
+            
+            let myDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+            let moviesDirectory = myDirectory[0]
+            
+            print("----")
+            print(moviesDirectory)
+            let fileName = "test.mp3"
+            
+            //let downloadTo = URL(string: "file://\(moviesDirectory)/\(fileName)")
+            //let downloadTo = URL(string: "file://\(moviesDirectory)")
+            //let path = "file://\(moviesDirectory)/\(fileName)"
+            let path = "\(moviesDirectory)/\(fileName)"
+            
+            
+            let fileManager = FileManager.default
+            var isDir :Bool = false
+            isDir = fileManager.fileExists(atPath: path)
+            
+            if !isDir {
+                try! fileManager.createDirectory(atPath: path ,withIntermediateDirectories: true, attributes: nil)
+                try! getData.write(to: URL(string:path)!)
+            }else {
+                try! getData.write(to: URL(string:path)!)
+            }
+            
+//            do {
+//                try! getData.write(to: downloadTo!)
+//            } catch {
+//                print("Error")
+//            }
+            
+        }
+        
+        task.resume()
+        
+    }
+
+    func test2() {
+
+        let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/folder_name"
+        
+        // -- start check directory --
+        let fileManager = FileManager.default
+        var isDir : Bool = false
+        
+        isDir = fileManager.fileExists(atPath: path)
+        
+        if !isDir {
+            try! fileManager.createDirectory(atPath: path ,withIntermediateDirectories: true, attributes: nil)
+        }
+        
+        // 保存するもの
+        let fileObject = "hogehoge"
+        // ファイル名
+        let fileName = "tes1.txt"
+        // 保存処理
+        try! fileObject.write(toFile: "\(path)/\(fileName)", atomically: true, encoding: String.Encoding.utf8)
+        
+        // 旧ファイル名
+        let old_fileName = "tes1.txt"
+        // 新ファイル名
+        let new_fileName = "tes.txt"
+        try! FileManager.default.moveItem(atPath: "\(path)/\(old_fileName)", toPath: "\(path)/\(new_fileName)")
+    }
+
+
 }
+
