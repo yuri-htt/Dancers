@@ -40,6 +40,7 @@ class VideoDetailViewController:UIViewController, UITableViewDataSource, UITable
         super.didReceiveMemoryWarning()
     }
 
+	// TODO; setColorsメソッドは、大半の画面で使うはずだから、ここに書かずに外出してください
     func setColors() {
         
         let realm = try! Realm()
@@ -70,6 +71,7 @@ class VideoDetailViewController:UIViewController, UITableViewDataSource, UITable
     func setVideo() {
         if let url = self.video?.embedded_url {
             let urlRequest = URLRequest(url: NSURL(string:url) as! URL)
+			// TODO; GitHubにコミットする時は、テスト時に使用した特定のURLは消しましょう
             //let urlRequest = URLRequest(url: NSURL(string:"https://www.youtube.com/watch?v=0v5wtDt2Wbc&feature=player_embedded") as! URL)
             self.videoWebView.loadRequest(urlRequest)
         }
@@ -104,6 +106,7 @@ class VideoDetailViewController:UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
+        // TODO;（可能であれば）特にcase0とdefaultってほとんど同じだよね、、、setTableCellItemsみたいなメソッド作って共通部分は外出したほうがよさそう
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "VideoDetailCell", for: indexPath)  as! VideoDetailCell
             cell.backgroundColor = UIColor.clear
